@@ -6,7 +6,13 @@ const secret = process.env.API_KEY;
 app.get('/', (req, res) => {
   res.send(`👋 Hello from ConfigMap: ${process.env.APP_MSG || "Default Message"}`);
 });
+app.get('/healthz', (req, res) => {
+  res.status(200).send('✅ Liveness OK');
+});
 
+app.get('/ready', (req, res) => {
+  res.status(200).send('✅ Readiness OK');
+});
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
